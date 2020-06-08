@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="view/styles.css" type="text/css">
+    <title>Battleship</title>
+</head>
+<body>
+<script src="view/scripts.js"></script>
+<div id="body"></div>
+<div class="gameFields-container">
+    <div class="firstField">
+        <h2>Your field</h2>
+        <article id="mainField" class="game-field-container">
+        </article>
+        <button id="sendShips" type="button" onclick="sendShips()">Done</button>
+        <button id="giveUp" type="button" onclick="giveUp()">Give up</button>
+        <button id="exit" type="button" onclick="exit()">Exit</button>
+    </div>
+    <div class="journal-container">
+        <h2>Journal</h2>
+        <article id="journal" class="journal">
+        </article>
+    </div>
+    <div class="secondField">
+        <h2>Enemy field</h2>
+        <article id="enemyField" class="game-field-container">
+        </article>
+    </div>
+    <div id="toast">You move!</div>
+</div>
+<script>initGameField("mainField")</script>
+<script>initGameField("enemyField")</script>
+</body>
+</html>

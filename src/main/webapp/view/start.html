@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BattleShip</title>
+</head>
+<body>
+<script>
+    let timer;
+    function waitEnemy() {
+        fetch("/check",{
+            method: "post",
+        }).then(value => {
+            if (value.redirected){
+                window.location.href = value.url;
+            }
+            return value.text()}).then(() => {
+            timer.innerText= parseInt(timer.innerText) + 10 + ""
+        })
+    }
+    function start() {
+        login = document.cookie.match("login=([a-zA-Z]*)")[1];
+        console.log(login)
+        fetch("/game",{
+            method: "post",
+        }).then(value => {
+            if (value.redirected){
+                window.location.href = value.url;
+            }
+            return value.text()
+        }).then(value => {
+            if (value === "waitEnemy"){
+                setInterval(waitEnemy,10000);
+                timer = document.createElement("div");
+                timer.id = "timer";
+                document.getElementById("form").appendChild(timer);
+                timer.innerText= "0";
+            }
+        })
+    }
+</script>
+<button type="button" onclick="start()">New Game</button>
+<div id="form"></div>
+</body>
+</html>
